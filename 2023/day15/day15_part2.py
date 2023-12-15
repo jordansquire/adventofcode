@@ -26,7 +26,7 @@ def calculate_score(test: bool) -> int:
         file.close()
 
     score = 0
-    boxes = {}
+    boxes = [dict() for _ in range(256)]
 
     for step in steps:
         if step.count('='):
@@ -39,27 +39,14 @@ def calculate_score(test: bool) -> int:
         box = custom_hash(label)
 
         if split_char == '=':
-            focal_length = int(step_split[1])
-            if box not in boxes.keys():
-                boxes[box] = [{label: focal_length}]
-            else:
-                try:
-                    box_index = next((i for i, item in enumerate(boxes[box]) if item[label]), None)
-                    boxes[box][box_index] = {label: focal_length}
-                except KeyError:
-                    boxes[box].append({label: focal_length})
+            boxes[box][label] = int(step_split[1])
 
         else:
-            try:
-                box_index = next((i for i, item in enumerate(boxes[box]) if item[label]), None)
-                if box_index:
-                    boxes[box].pop(box_index)
-            except KeyError:
-                pass
+            boxes[box].pop(label, 0)
 
-    for box in boxes:
-        for slot, lense in enumerate(boxes[box]):
-            score += (box + 1) * (slot + 1) * next(iter(lense.values()))
+    for id, box in enumerate(boxes, 1):
+        for slot, lens in enumerate(box.values(), 1):
+            score += id * slot * lens
 
     return score
 
