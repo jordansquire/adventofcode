@@ -60,8 +60,8 @@ def calculate_score_pt2(test: bool) -> int:
     return score
 
 if __name__ == '__main__':
-    # score = calculate_score_pt1(test=False)
-    # print(f'Score: {score}')
+    score = calculate_score_pt1(test=False)
+    print(f'Score: {score}')
 
     score = calculate_score_pt2(test=False)
     print(f'Score: {score}')
