@@ -1,5 +1,3 @@
-from re import split
-
 from util.util import timeit
 
 def _find_matching_char(str1, str2) -> str:

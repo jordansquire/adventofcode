@@ -1,5 +1,3 @@
-from re import split
-
 from util.util import timeit
 
 test_data1 = [
