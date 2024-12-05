@@ -52,5 +52,3 @@ if __name__ == '__main__':
 
     score = calculate_score_pt2(test=False)
     print(f'Score: {score}')
-
-    # 907 too high
