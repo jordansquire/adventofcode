@@ -19,7 +19,7 @@ def calculate_score_pt1(test: bool) -> int:
     for i, pt1 in enumerate(points):
         for j in range(i + 1, len(points)):
             pt2 = points[j]
-            size = abs(pt1[0] - pt2[0] + 1) * abs(pt1[1] - pt2[1] + 1)
+            size = (abs(pt1[0] - pt2[0]) + 1) * (abs(pt1[1] - pt2[1]) + 1)
             if size > max_size:
                 max_size = size
 
